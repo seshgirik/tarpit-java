@@ -3,10 +3,13 @@ name: Trufflehog Scan
 on:
   push:
     branches:
-      - main
+      - master
+      - feature/*
+      - epic/*
+      - fix/*
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   trufflehog:
@@ -20,3 +23,5 @@ jobs:
     # Run Trufflehog GitHub Action
     - name: Run Trufflehog
       uses: trufflesecurity/trufflehog@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
