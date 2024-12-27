@@ -18,10 +18,10 @@ jobs:
     steps:
     # Checkout the repository code
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     # Run Trufflehog GitHub Action
     - name: Run Trufflehog
-      uses: trufflesecurity/trufflehog@v4
+      uses: trufflesecurity/TruffleHog-Enterprise-Github-Action@main
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
