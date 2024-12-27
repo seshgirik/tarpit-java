@@ -1,18 +1,24 @@
+name: Trufflehog Scan
+
 on:
   push:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
-  test:
+  trufflehog:
     runs-on: ubuntu-latest
+
     steps:
+    # Checkout the repository code
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
+
+    # Run Trufflehog GitHub Action
+    - name: Run Trufflehog
+      uses: trufflesecurity/trufflehog@v4
       with:
-        fetch-depth: 0
-    - name: Secret Scanning
-      uses: trufflesecurity/trufflehog@main
-      with:
-        extra_args: --results=verified,unknown
+        github_token: ${{ secrets.GITHUB_TOKEN }}
